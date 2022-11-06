@@ -12,4 +12,11 @@ for (var image of galleryItems) {
   `);
 }
 
-var lightbox = new SimpleLightbox('.gallery a', { /* options */ });
+var lightbox = new SimpleLightbox('.gallery a', { 
+        captionDelay: 250,
+        captionSelector: 'alt',
+        captionType: 'attr',
+        captionsData: 'title',
+        captionPosition: 'bottom',
+        captionClass: '',
+ });
