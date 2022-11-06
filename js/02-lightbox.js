@@ -12,4 +12,4 @@ for (var image of galleryItems) {
   `);
 }
 
-var lightbox = new SimpleLightbox('.gallery a', {});
+var lightbox = new SimpleLightbox('.gallery a', {  });
