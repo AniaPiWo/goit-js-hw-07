@@ -7,16 +7,13 @@ for (var image of galleryItems) {
   
   gallery.insertAdjacentHTML("beforeend", `
    <a class="gallery__item" href="${image.original}">
-  <img class="gallery__image"src="${image.preview}" alt="${image.desciption}" />
+  <img class="gallery__image"src="${image.preview}" alt="${image.description}" />
 </a>
   `);
 }
 
 var lightbox = new SimpleLightbox('.gallery a', { 
-        captionDelay: 250,
-        captionSelector: 'alt',
-        captionType: 'attr',
-        captionsData: 'title',
-        captionPosition: 'bottom',
-        captionClass: '',
+    captionDelay: 250,
+   	captionType: "attr",
+	captionsData: "alt",
  });
