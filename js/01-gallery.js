@@ -38,6 +38,7 @@ gallery.addEventListener("click", (event) => {
 document.addEventListener("keydown", (event) => {
   const visible = basicLightbox.visible();
   if (visible && event.key === "Escape") {
+    console.log("Esc klikniety!");
     instance.close();
   }
 });
