@@ -2,6 +2,8 @@ import { galleryItems } from './gallery-items.js';
 
 const gallery = document.querySelector('.gallery');
 
+
+//create gallery
 for (var image of galleryItems) {
   
   gallery.insertAdjacentHTML("beforeend", `
@@ -13,47 +15,25 @@ for (var image of galleryItems) {
   `);
 }
 
-const instance = basicLightbox.create('', {
-  className: 'lightbox',
-});
-
-const elem = instance.element();
-
-document.querySelectorAll('.gallery__item').forEach((item) => {
-  item.addEventListener('click', (event) => {
-    event.preventDefault();
-    makeLightbox(
-      item.querySelectorAll('a')[0].href
-    );
-    
-  });
-});
-
-function makeLightbox(url) {
+gallery.addEventListener('click', (event) => {
   
-  elem.innerHTML = lightboxHtml(url);
+  event.preventDefault();
+
+  if (event.target.nodeName !== "IMG") {
+    return;
+  }
+
+  const instance = basicLightbox.create(
+    `<img src="${event.target.dataset.source}" alt ="${event.target.alt}">`)
+  console.log(event.target.dataset.source);
   instance.show();
-  
-	document.onkeydown = function(evt) {
-		evt = evt || window.event;
-		var isEscape = false;
-		if ( "key" in evt ) {
-			isEscape = ( evt.key === "Escape" || evt.key === "Esc" );
-		} else {
-			isEscape = ( evt.keyCode === 27 );
-		}
-		if ( isEscape ) {
-			instance.close();
-		}
-	};
-  
-}
 
-function lightboxHtml(url) {
-  let htmlValue = `
-    <figure id="lightboxContent" class="lightbox-figure">
-      <img class="lightbox-img" src="${url}" />
-    </figure>
-    `;
-  return htmlValue;
-}
+  document.addEventListener("keydown", (event) => {
+    const visible = basicLightbox.visible();
+    if (visible && event.key === "Escape") {
+      instance.close()
+    }
+  })
+});
+
+
